@@ -47,13 +47,22 @@
       <height>541</height>
      </rect>
     </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(58, 58, 58);
 color: rgb(250, 250, 250);
 </string>
     </property>
+    <property name="dragDropMode">
+     <enum>QAbstractItemView::DragDrop</enum>
+    </property>
     <property name="selectionMode">
      <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
     </property>
     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
      <bool>true</bool>
@@ -193,6 +202,11 @@ padding-bottom: 5px;</string>
       </widget>
      </item>
     </layout>
+    <zorder>button_new</zorder>
+    <zorder>button_delete</zorder>
+    <zorder>button_delete_all</zorder>
+    <zorder>button_close</zorder>
+    <zorder>button_delete_all_2</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
