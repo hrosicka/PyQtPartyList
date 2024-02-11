@@ -44,7 +44,7 @@ class PartyWindow(QMainWindow):
         self.table_party_list.setModel(self.personModel.model)
         self.table_party_list.setSelectionBehavior(QAbstractItemView.SelectRows) 
         self.table_party_list.horizontalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(69, 86, 206); color: rgb(250, 250, 250); font-weight: bold;} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
-        self.table_party_list.verticalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(60, 60, 60); color: rgb(250, 210, 210); font-size: 6} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
+        self.table_party_list.verticalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(60, 60, 60); color: rgb(200, 250, 200); font-size: 6} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
 
         self.button_delete.clicked.connect(lambda: self.deletePerson())
         self.button_close.clicked.connect(app.closeAllWindows)
