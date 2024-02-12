@@ -3,7 +3,7 @@ PartyList, SQLite database, Still in progress...
 
 ### Testing data
 Data for first testing
-SQL skript [SQL skript - testing data]([https://pages.github.com/](https://github.com/hrosicka/PyQtPartyList/blob/master/input_first_data.sql)).
+SQL skript [SQL skript - testing data](https://github.com/hrosicka/PyQtPartyList/blob/master/input_first_data.sql).
 
 ### Main window
 Main window...
