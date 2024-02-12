@@ -26,6 +26,16 @@ class PersonModel:
         self.model.submitAll()  
         self.model.select()
 
+    
+    def deletePeople(self):  
+        """Remove all people from the database."""  
+        raw = self.model.rowCount()
+        while (raw >= 0):
+            self.model.removeRow(raw)
+            raw = raw - 1
+        self.model.submitAll()  
+        self.model.select()
+
 
         
 

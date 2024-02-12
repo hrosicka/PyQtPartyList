@@ -47,11 +47,12 @@ class PartyWindow(QMainWindow):
         self.table_party_list.verticalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(60, 60, 60); color: rgb(200, 250, 200); font-size: 6} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
 
         self.button_delete.clicked.connect(lambda: self.deletePerson())
+        self.button_delete_all.clicked.connect(lambda: self.deletePeople())
         self.button_close.clicked.connect(app.closeAllWindows)
 
 
     def deletePerson(self):  
-        """Delete the selected contact from the database."""  
+        """Delete the selected person from the database."""  
         row = self.table_party_list.currentIndex().row()  
         if row < 0:  
             return  
@@ -60,6 +61,14 @@ class PartyWindow(QMainWindow):
   
         if messageBox == QMessageBox.Ok:
             self.personModel.deletePerson(row) 
+
+    def deletePeople(self):  
+        """Delete all people from the database."""  
+      
+        messageBox = QMessageBox.warning(self, "Warning!", "<FONT COLOR='white'>Really do you want to delete all people?", QMessageBox.Ok | QMessageBox.Cancel)  
+  
+        if messageBox == QMessageBox.Ok:
+            self.personModel.deletePeople() 
 
 app = QApplication(sys.argv)
 connection = Database.createConnection("party_list.db")
