@@ -32,10 +32,13 @@ Deleted all data from the table
 ### Add new person
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialog.png)
 
-### All fields must be filled
+
+#### All fields must be filled
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialogFirstName.png)
 
+
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialogLastName.png)
+
 
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialogPhone.png)
 
