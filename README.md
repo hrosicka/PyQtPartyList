@@ -1,6 +1,10 @@
 # PyQtPartyList
 PartyList, SQLite database, Still in progress...
 
+### Testing data
+Data for first testing
+SQL skript [SQL skript - testing data](https://github.com/hrosicka/PyQtPartyList/blob/master/input_first_data.sql).
+
 ### Main window
 Main window...
 
@@ -13,7 +17,20 @@ Sorting table
 
 
 #### Warning
-Warning before deleting record
+Warning before deleting one record - one people
 
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/WarningDeleting.png)
+
+Warning before deleting all records - all people
+
+![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/WarningDeletingAllPeople.png)
+
+Deleted all data from the table
+
+![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/DeletedAllData.png)
+
+
+
+
+
 
