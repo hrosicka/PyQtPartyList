@@ -12,8 +12,6 @@ from PyQt5.QtWidgets import (
     QDialog,
     QMainWindow,
     QMessageBox,
-    QTableView
-
 )
 
 from PyQt5.QtGui import (
@@ -87,19 +85,32 @@ class AddPersonDialog(QDialog):
         # loading design - created in QtCreator
         loadUi("AddPerson.ui", self)
 
+        # button box created in Qt Designer
+        # press button OK
         self.buttonBox.accepted.connect(self.accept)  
+        # press butoon Cancel
         self.buttonBox.rejected.connect(self.reject)
 
-    
+    # press button OK
     def accept(self):  
         """Accept the data provided through the dialog."""  
         self.data = []  
         for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):  
             if not field.text():  
+                if field == self.edit_first_name:
+                    label_text = self.label_first_name.text()
+                elif field == self.edit_last_name:
+                    label_text = self.label_last_name.text()
+                elif field == self.edit_phone:
+                    label_text = self.label_phone.text()
+                elif field == self.edit_email:
+                    label_text = self.label_email.text()
+
+
                 QMessageBox.critical(  
                     self,  
                     "Error!",  
-                    f"<FONT COLOR='white'>You must provide a contact's {field.objectName()}",  
+                    f"<FONT COLOR='white'>You must provide a person's {label_text}",  
                 )  
                 self.data = None  # Reset .data  
                 return  

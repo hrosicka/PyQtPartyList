@@ -6,9 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>401</width>
+    <width>484</width>
     <height>322</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>484</width>
+    <height>322</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>484</width>
+    <height>322</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>484</width>
+    <height>322</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Add new person</string>
@@ -21,7 +39,7 @@
     <rect>
      <x>10</x>
      <y>270</y>
-     <width>381</width>
+     <width>461</width>
      <height>41</height>
     </rect>
    </property>
@@ -52,7 +70,7 @@ padding-bottom: 5px;</string>
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>381</width>
+     <width>461</width>
      <height>247</height>
     </rect>
    </property>
@@ -67,14 +85,14 @@ padding-bottom: 5px;</string>
 color: rgb(209, 209, 209);</string>
       </property>
       <property name="text">
-       <string>Fist Name</string>
+       <string>First Name</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
      <widget class="QLineEdit" name="edit_first_name">
       <property name="toolTip">
-       <string>Insert your age</string>
+       <string>Insert First Name</string>
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt;
@@ -99,7 +117,7 @@ color: rgb(209, 209, 209);</string>
     <item row="1" column="1">
      <widget class="QLineEdit" name="edit_last_name">
       <property name="toolTip">
-       <string>Insert your height in cm</string>
+       <string>Insert Last Name</string>
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt;
@@ -124,7 +142,7 @@ color: rgb(209, 209, 209);</string>
     <item row="2" column="1">
      <widget class="QLineEdit" name="edit_phone">
       <property name="toolTip">
-       <string>Insert your weight in kg</string>
+       <string>Insert Phone</string>
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
@@ -151,9 +169,15 @@ color: rgb(209, 209, 209);</string>
     </item>
     <item row="3" column="1">
      <widget class="QLineEdit" name="edit_email">
+      <property name="toolTip">
+       <string>Insert Email</string>
+      </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(209, 209, 209);</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
