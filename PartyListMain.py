@@ -46,6 +46,7 @@ class PartyWindow(QMainWindow):
         self.table_party_list.horizontalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(69, 86, 206); color: rgb(250, 250, 250); font-weight: bold;} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
         self.table_party_list.verticalHeader().setStyleSheet('QHeaderView::section {background-color: rgb(60, 60, 60); color: rgb(200, 250, 200); font-size: 6} QToolTip { background-color: #8ad4ff; color: black; border: #8ad4ff solid 1px}')
 
+        self.button_new.clicked.connect(self.openAddPerson)  
         self.button_delete.clicked.connect(lambda: self.deletePerson())
         self.button_delete_all.clicked.connect(lambda: self.deletePeople())
         self.button_close.clicked.connect(app.closeAllWindows)
@@ -69,6 +70,45 @@ class PartyWindow(QMainWindow):
   
         if messageBox == QMessageBox.Ok:
             self.personModel.deletePeople() 
+
+    def openAddPerson(self):  
+        """Open the Add Contact dialog."""  
+        dialog = AddPersonDialog()  
+        if dialog.exec() == QDialog.Accepted:  
+            self.personModel.addPerson(dialog.data)  
+            self.table_party_list.resizeColumnsToContents()  
+
+
+# second dialog for informatin display
+class AddPersonDialog(QDialog):
+
+    def __init__(self):
+        super().__init__()
+        # loading design - created in QtCreator
+        loadUi("AddPerson.ui", self)
+
+        self.buttonBox.accepted.connect(self.accept)  
+        self.buttonBox.rejected.connect(self.reject)
+
+    
+    def accept(self):  
+        """Accept the data provided through the dialog."""  
+        self.data = []  
+        for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):  
+            if not field.text():  
+                QMessageBox.critical(  
+                    self,  
+                    "Error!",  
+                    f"You must provide a contact's {field.objectName()}",  
+                )  
+                self.data = None  # Reset .data  
+                return  
+
+            self.data.append(field.text())  
+            print(self.data)
+
+        super().accept()  
+
 
 app = QApplication(sys.argv)
 connection = Database.createConnection("party_list.db")

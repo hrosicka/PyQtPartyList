@@ -37,6 +37,18 @@ class PersonModel:
         self.model.select()
 
 
+    def addPerson(self, data):  
+        """Add one person to the database."""  
+        rows = self.model.rowCount()  
+        self.model.insertRows(rows, 1)  
+        for column, field in enumerate(data):  
+            self.model.setData(self.model.index(rows, column + 1), field)  
+        self.model.submitAll()  
+        self.model.select()  
+
+
+
+
         
 
     
