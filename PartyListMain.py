@@ -99,7 +99,7 @@ class AddPersonDialog(QDialog):
                 QMessageBox.critical(  
                     self,  
                     "Error!",  
-                    f"You must provide a contact's {field.objectName()}",  
+                    f"<FONT COLOR='white'>You must provide a contact's {field.objectName()}",  
                 )  
                 self.data = None  # Reset .data  
                 return  

@@ -77,7 +77,7 @@ color: rgb(209, 209, 209);</string>
        <string>Insert your age</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 16pt;
+       <string notr="true">font: 12pt;
 color: rgb(209, 209, 209);</string>
       </property>
       <property name="alignment">
@@ -102,7 +102,7 @@ color: rgb(209, 209, 209);</string>
        <string>Insert your height in cm</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 16pt;
+       <string notr="true">font: 12pt;
 color: rgb(209, 209, 209);</string>
       </property>
       <property name="alignment">
@@ -127,7 +127,7 @@ color: rgb(209, 209, 209);</string>
        <string>Insert your weight in kg</string>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+       <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(209, 209, 209);</string>
       </property>
       <property name="text">
@@ -152,7 +152,7 @@ color: rgb(209, 209, 209);</string>
     <item row="3" column="1">
      <widget class="QLineEdit" name="edit_email">
       <property name="styleSheet">
-       <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+       <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(209, 209, 209);</string>
       </property>
      </widget>
