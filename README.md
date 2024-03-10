@@ -29,6 +29,8 @@ Deleted all data from the table
 
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/DeletedAllData.png)
 
+#### Add new person
+![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialog.png)
 
 
 
