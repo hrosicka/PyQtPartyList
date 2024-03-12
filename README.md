@@ -17,7 +17,7 @@ Sorting table
 
 
 #### Warning
-Warning before deleting one record - one people
+Warning before deleting one record - one person
 
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/WarningDeleting.png)
 
