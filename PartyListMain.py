@@ -49,6 +49,7 @@ class PartyWindow(QMainWindow):
         self.button_delete.clicked.connect(lambda: self.deletePerson())
         self.button_delete_all.clicked.connect(lambda: self.deletePeople())
         self.button_close.clicked.connect(app.closeAllWindows)
+        self.button_export_one.clicked.connect(self.export_selected_row)
         self.button_export_all.clicked.connect(self.export_to_excel)  
 
 
@@ -108,6 +109,42 @@ class PartyWindow(QMainWindow):
             wb.save(filename)
             messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to Excel successfully!") 
 
+    def export_selected_row(self):
+        """Exports the data from the currently selected row to an Excel file.
+
+        Returns:
+            None
+        """
+        row = self.table_party_list.currentIndex().row()  
+        if row < 0:  
+            return 
+
+        selected_data = self.personModel.get_current_row(row)  # Get data from selected row
+
+        if not selected_data:
+            QMessageBox.information(self, "Information", "No row selected to export!")
+            return
+
+        # Create a new workbook
+        wb = openpyxl.Workbook()
+        sheet = wb.active
+        sheet.title = "Party List"
+
+        # Write headers (assuming consistent data structure)
+        headers = list(selected_data.keys())
+        for col_index, header in enumerate(headers, start=1):
+            sheet.cell(row=1, column=col_index).value = header
+
+        # Write data
+        row_index = 2  # Start data on row 2
+        for col_index, value in enumerate(selected_data.values(), start=1):
+            sheet.cell(row=row_index, column=col_index).value = value
+
+        # Save the workbook
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Export Selected Row", "", "Excel Files (*.xlsx)")
+        if filename:
+            wb.save(filename)
+            messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Selected row exported to Excel successfully!</FONT>")
 
 # second dialog for informatin display
 class AddPersonDialog(QDialog):
