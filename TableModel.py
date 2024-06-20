@@ -45,6 +45,29 @@ class PersonModel:
             self.model.setData(self.model.index(rows, column + 1), field)  
         self.model.submitAll()  
         self.model.select()  
+    
+
+    def get_all_people(self):
+        """Retrieves all people and returns them as a list of dictionaries."""
+
+        all_people = []
+        if self.model.select():
+            # Get column count (assuming consistent data structure)
+            column_count = self.model.columnCount()
+
+            # Loop through all rows
+            for row in range(self.model.rowCount()):
+                person_data = {}
+                for col in range(column_count):
+                    # Access data using index and Qt.DisplayRole
+                    value = self.model.data(self.model.index(row, col), Qt.DisplayRole)
+                    # Use column headers as dictionary keys (assuming they exist)
+                    headers = ("ID", "First Name", "Last Name", "Phone", "Email")
+                    if col < len(headers):
+                        person_data[headers[col]] = value
+                all_people.append(person_data)
+
+        return all_people
 
 
 

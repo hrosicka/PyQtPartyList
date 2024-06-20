@@ -1,6 +1,7 @@
 import sys
 import Database
 import TableModel
+import openpyxl
 
 from pathlib import Path
 
@@ -48,6 +49,7 @@ class PartyWindow(QMainWindow):
         self.button_delete.clicked.connect(lambda: self.deletePerson())
         self.button_delete_all.clicked.connect(lambda: self.deletePeople())
         self.button_close.clicked.connect(app.closeAllWindows)
+        self.button_export_all.clicked.connect(self.export_to_excel)  
 
 
     def deletePerson(self):  
@@ -74,7 +76,37 @@ class PartyWindow(QMainWindow):
         dialog = AddPersonDialog()  
         if dialog.exec() == QDialog.Accepted:  
             self.personModel.addPerson(dialog.data)  
-            self.table_party_list.resizeColumnsToContents()  
+            self.table_party_list.resizeColumnsToContents()
+
+    def export_to_excel(self):
+        """Exports party list to an Excel file using retrieved dictionaries."""
+
+        people_data = self.personModel.get_all_people()
+
+        if not people_data:
+            QMessageBox.information(self, "Information", "No data found to export!")
+            return
+
+        # Create a new workbook
+        wb = openpyxl.Workbook()
+        sheet = wb.active
+        sheet.title = "Party List"
+
+        # Write headers
+        headers = list(people_data[0].keys())  # Assuming consistent data structure
+        for col_index, header in enumerate(headers, start=1):
+            sheet.cell(row=1, column=col_index).value = header
+
+        # Write data
+        for row_index, person in enumerate(people_data, start=2):
+            for col_index, value in enumerate(person.values(), start=1):
+                sheet.cell(row=row_index, column=col_index).value = value
+
+        # Save the workbook
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Export Party List", "", "Excel Files (*.xlsx)")
+        if filename:
+            wb.save(filename)
+            messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to Excel successfully!") 
 
 
 # second dialog for informatin display
