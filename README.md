@@ -1,5 +1,5 @@
-# PyQtPartyList
-Application for creating partylist of friends. Written in Python and PyQt. Forms are created using QtDesigner. SQLite database is used as storage. Still in progress...
+# PartyList
+Application for creating partylist of friends. Written in Python. SQLite database is used as storage. Still in progress...
 
 ## Testing data
 Data for first testing.
