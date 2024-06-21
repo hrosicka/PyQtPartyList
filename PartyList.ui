@@ -43,7 +43,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>801</width>
+      <width>781</width>
       <height>541</height>
      </rect>
     </property>
@@ -74,9 +74,9 @@ color: rgb(250, 250, 250);
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>800</x>
       <y>20</y>
-      <width>161</width>
+      <width>191</width>
       <height>541</height>
      </rect>
     </property>
@@ -95,13 +95,17 @@ color: rgb(250, 250, 250);
      </property>
      <item>
       <widget class="QPushButton" name="button_new">
+       <property name="toolTip">
+        <string>Add a guest to the party!</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 
@@ -114,13 +118,18 @@ padding-bottom: 5px;</string>
      </item>
      <item>
       <widget class="QPushButton" name="button_delete">
+       <property name="toolTip">
+        <string>Take this guest
+off the invite list!</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 
@@ -133,13 +142,18 @@ padding-bottom: 5px;</string>
      </item>
      <item>
       <widget class="QPushButton" name="button_delete_all">
+       <property name="toolTip">
+        <string>Say goodbye to your party
+guests in one click!</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 
@@ -152,13 +166,18 @@ padding-bottom: 5px;</string>
      </item>
      <item>
       <widget class="QPushButton" name="button_export_one">
+       <property name="toolTip">
+        <string>Export this guest
+into a spreadsheet!</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 
@@ -171,13 +190,18 @@ padding-bottom: 5px;</string>
      </item>
      <item>
       <widget class="QPushButton" name="button_export_all">
+       <property name="toolTip">
+        <string>Export all your partygoers
+into a spreadsheet in one click!</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 
@@ -205,11 +229,12 @@ padding-bottom: 5px;</string>
       <widget class="QPushButton" name="button_close">
        <property name="styleSheet">
         <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
 font-weight: bold;
 color: rgb(250, 250, 250);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
 border-style: solid;
-border-radius:10px;
+border-radius:20px;
 padding-left: 5px; 
 padding-right: 5px;
 padding-top: 5px; 

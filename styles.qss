@@ -8,3 +8,9 @@ QPushButton {
     margin-top: 10px;
     outline: 0px;
 }
+
+QToolTip {
+    background-color: #8ad4ff;
+    color: black;
+    border: #8ad4ff solid 1px
+}
