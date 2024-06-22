@@ -13,8 +13,11 @@ SQL skript [SQL skript - testing data](https://github.com/hrosicka/PyQtPartyList
 ### Allowable functions
 - add new person
 - delete one record
+- edit one record
 - delete all records
-- export data into excel
+- export one record into Excel
+- export data into Excel
+- export data into PDF
 - close applicatin
 
 
