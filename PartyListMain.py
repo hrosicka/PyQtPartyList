@@ -2,6 +2,7 @@ import sys
 import Database
 import TableModel
 import openpyxl
+from reportlab.pdfgen import canvas
 
 from pathlib import Path
 
@@ -71,7 +72,8 @@ class PartyWindow(QMainWindow):
         self.button_delete_all.clicked.connect(lambda: self.deletePeople())
         self.button_close.clicked.connect(app.closeAllWindows)
         self.button_export_one.clicked.connect(self.export_selected_row)
-        self.button_export_all.clicked.connect(self.export_to_excel)  
+        self.button_export_all_excel.clicked.connect(self.export_to_excel)
+        self.button_export_all_pdf.clicked.connect(self.export_to_pdf) 
 
 
     def deletePerson(self):  
@@ -237,6 +239,84 @@ class PartyWindow(QMainWindow):
             wb.save(filename)
             messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Selected row exported to Excel successfully!</FONT>")
 
+    def export_to_pdf(self):
+        """
+        Exports party list to a PDF file using retrieved dictionaries.
+
+        - Retrieves all people data using `self.personModel.get_all_people()`.
+        - Checks if there's any data to export:
+            - If no data is found, displays an information message box and returns.
+        - Creates a new PDF document using `canvas.Canvas`.
+        - Sets document title and font properties.
+
+        - Writes headers:
+            - Assumes a consistent data structure in dictionaries.
+            - Extracts headers from the first dictionary's keys.
+            - Sets font size and color for headers.
+            - Writes headers centered in columns.
+
+        - Writes data:
+            - Iterates through each person's data dictionary.
+            - Sets font size and color for data.
+            - Writes data left-aligned in columns with some margin.
+
+        - Saves the PDF:
+            - Prompts the user to choose a filename using `QtWidgets.QFileDialog.getSaveFileName`.
+            - If a filename is chosen, saves the document using `canvas.save`.
+            - Displays a success message box.
+        """
+
+        people_data = self.personModel.get_all_people()
+
+        if not people_data:
+            messageBox = QMessageBox.information(self, "Information", "<FONT COLOR='white'>No data found to export!</FONT>")
+            return
+
+        # Create a new PDF document
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Export Party List", "", "PDF Files (*.pdf)")
+        if not filename:
+            return
+
+        my_canvas = canvas.Canvas(filename)  # Create canvas inside the function
+        my_canvas.setTitle("Party List")
+        my_canvas.setFont("Helvetica", 12)  # Set font properties
+
+        # Header row properties
+        header_y = 780  # Starting position for headers
+        header_font_size = 11
+        header_color = "blue"
+        header_margin = 50
+
+        # Data row properties
+        data_y = header_y - 20  # Starting position for data (below headers)
+        data_font_size = 11
+        data_color = "black"
+        data_margin = 50  # Margin from left edge for data
+
+        # Write headers
+        headers = list(people_data[0].keys())
+        num_columns = len(headers)
+        column_width = (500 - data_margin) / num_columns
+
+        for col_index, header in enumerate(headers):
+            x = header_margin + (column_width * col_index)
+            my_canvas.setFontSize(header_font_size)
+            my_canvas.setFillColor(header_color)
+            my_canvas.drawCentredString(x, header_y, header)
+
+        # Write data
+        for row_index, person in enumerate(people_data):
+            data_y -= 15  # Move down for each data row
+            my_canvas.setFontSize(data_font_size)
+            my_canvas.setFillColor(data_color)
+
+            for col_index, value in enumerate(person.values()):
+                x = data_margin + (column_width * col_index)
+                my_canvas.drawString(x, data_y, str(value))  # Left-aligned data
+
+        # Save the PDF
+        my_canvas.save()
+        messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to PDF successfully!</FONT>")
 
 # second dialog for informatin display
 class AddPersonDialog(QDialog):

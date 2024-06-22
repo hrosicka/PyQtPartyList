@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1050</width>
     <height>600</height>
    </rect>
   </property>
@@ -21,13 +21,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
+    <width>1050</width>
     <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
+    <width>1050</width>
     <height>600</height>
    </size>
   </property>
@@ -43,7 +43,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>781</width>
+      <width>801</width>
       <height>541</height>
      </rect>
     </property>
@@ -74,13 +74,13 @@ color: rgb(250, 250, 250);
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>800</x>
+      <x>820</x>
       <y>20</y>
-      <width>191</width>
+      <width>221</width>
       <height>541</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" stretch="1,0,0,0,0,0,0">
+    <layout class="QVBoxLayout" stretch="1,0,0,0,0,0,0,0">
      <property name="leftMargin">
       <number>10</number>
      </property>
@@ -184,12 +184,12 @@ padding-top: 5px;
 padding-bottom: 5px;</string>
        </property>
        <property name="text">
-        <string>Export One</string>
+        <string>One to Excel</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="button_export_all">
+      <widget class="QPushButton" name="button_export_all_excel">
        <property name="toolTip">
         <string>Export all your partygoers
 into a spreadsheet in one click!</string>
@@ -208,7 +208,31 @@ padding-top: 5px;
 padding-bottom: 5px;</string>
        </property>
        <property name="text">
-        <string>Export All</string>
+        <string>All to Excel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_export_all_pdf">
+       <property name="toolTip">
+        <string>Export all your partygoers
+into PDF in one click!</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 75 10pt &quot;Microsoft YaHei UI&quot;;
+height: 32px;
+font-weight: bold;
+color: rgb(250, 250, 250);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(69, 86, 206), stop:1 rgb(69, 206, 86));
+border-style: solid;
+border-radius:20px;
+padding-left: 5px; 
+padding-right: 5px;
+padding-top: 5px; 
+padding-bottom: 5px;</string>
+       </property>
+       <property name="text">
+        <string>All to PDF</string>
        </property>
       </widget>
      </item>
@@ -250,8 +274,9 @@ padding-bottom: 5px;</string>
     <zorder>button_delete</zorder>
     <zorder>button_delete_all</zorder>
     <zorder>button_close</zorder>
-    <zorder>button_export_all</zorder>
+    <zorder>button_export_all_excel</zorder>
     <zorder>button_export_one</zorder>
+    <zorder>button_export_all_pdf</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
