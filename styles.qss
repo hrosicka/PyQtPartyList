@@ -14,3 +14,11 @@ QToolTip {
     color: black;
     border: #8ad4ff solid 1px
 }
+
+QTableView {
+    selection-background-color: #45BC68;
+}
+
+QTableCornerButton::section {
+    background-color: rgb(58, 58, 58);
+}
