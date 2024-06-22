@@ -2,6 +2,7 @@ import sys
 import Database
 import TableModel
 import openpyxl
+import os
 from reportlab.pdfgen import canvas
 
 from pathlib import Path
@@ -59,8 +60,12 @@ class PartyWindow(QMainWindow):
         """
 
         super().__init__(parent)
-        self.personModel = TableModel.PersonModel()  
+        self.personModel = TableModel.PersonModel()
         loadUi("PartyList.ui", self)
+
+        dirname = os.path.dirname(__file__)
+        self.warning = os.path.join(dirname, 'warning.png')
+        self.info = os.path.join(dirname, 'info.png')
 
         self.table_party_list.setModel(self.personModel.model)
         self.table_party_list.setSelectionBehavior(QAbstractItemView.SelectRows) 
@@ -92,10 +97,12 @@ class PartyWindow(QMainWindow):
         if row < 0:  
             return  
 
-        messageBox = QMessageBox.warning(self, "Warning!", "<FONT COLOR='white'>Really do you want to delete the selected person?", QMessageBox.Ok | QMessageBox.Cancel)  
-  
-        if messageBox == QMessageBox.Ok:
-            self.personModel.deletePerson(row) 
+        messagebox = QMessageBox(QMessageBox.Information, "Warning!", "<FONT COLOR='white'>Really do you want to delete the selected person?", QMessageBox.Ok | QMessageBox.Cancel, parent=self)
+        messagebox.setIconPixmap(QPixmap(self.warning))
+        result = messagebox.exec_()  # Store the return value
+
+        if result == QMessageBox.Ok:
+            self.personModel.deletePerson(row)
 
     def deletePeople(self):  
         """
@@ -106,10 +113,11 @@ class PartyWindow(QMainWindow):
             - Calls the `deletePeople` method of the `PersonModel` instance to remove
             all people from the database.
         """
+        messagebox = QMessageBox(QMessageBox.Information, "Warning!", "<FONT COLOR='white'>Really do you want to delete all people?", QMessageBox.Ok | QMessageBox.Cancel, parent=self)
+        messagebox.setIconPixmap(QPixmap(self.warning))
+        result = messagebox.exec_()  # Store the return value
 
-        messageBox = QMessageBox.warning(self, "Warning!", "<FONT COLOR='white'>Really do you want to delete all people?", QMessageBox.Ok | QMessageBox.Cancel)  
-  
-        if messageBox == QMessageBox.Ok:
+        if result == QMessageBox.Ok:
             self.personModel.deletePeople() 
 
     def openAddPerson(self):  
@@ -127,7 +135,6 @@ class PartyWindow(QMainWindow):
         dialog = AddPersonDialog()  
         if dialog.exec() == QDialog.Accepted:  
             self.personModel.addPerson(dialog.data)  
-            self.table_party_list.resizeColumnsToContents()
 
     def export_to_excel(self):
         """
@@ -159,7 +166,9 @@ class PartyWindow(QMainWindow):
         people_data = self.personModel.get_all_people()
 
         if not people_data:
-            QMessageBox.information(self, "Information", "No data found to export!")
+            messagebox = QMessageBox(QMessageBox.Information, "Information", "<FONT COLOR='white'>No data found to export!", QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap(self.info))
+            result = messagebox.exec_()  # Store the return value
             return
 
         # Create a new workbook
@@ -181,7 +190,9 @@ class PartyWindow(QMainWindow):
         filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Export Party List", "", "Excel Files (*.xlsx)")
         if filename:
             wb.save(filename)
-            messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to Excel successfully!") 
+            messagebox = QMessageBox(QMessageBox.Information, "Information", "<FONT COLOR='white'>Party list exported to Excel successfully!", QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap(self.info))
+            result = messagebox.exec_()  # Store the return value
 
     def export_selected_row(self):
         """
@@ -215,7 +226,9 @@ class PartyWindow(QMainWindow):
         selected_data = self.personModel.get_current_row(row)  # Get data from selected row
 
         if not selected_data:
-            QMessageBox.information(self, "Information", "No row selected to export!")
+            messagebox = QMessageBox(QMessageBox.Information, "Information", "<FONT COLOR='white'>No row selected to export!", QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap(self.info))
+            result = messagebox.exec_()  # Store the return value
             return
 
         # Create a new workbook
@@ -363,6 +376,8 @@ class AddPersonDialog(QDialog):
         - If all fields have data, appends the text from each field to `self.data`.
         - Calls the superclass `accept` method to close the dialog with OK.
         """
+        dirname = os.path.dirname(__file__)
+        stop_writing = os.path.join(dirname, 'stop_writing.png')
 
         self.data = []  
         for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):  
@@ -376,12 +391,11 @@ class AddPersonDialog(QDialog):
                 elif field == self.edit_email:
                     label_text = self.label_email.text()
 
+                messagebox = QMessageBox(QMessageBox.Information, "Error", f"<FONT COLOR='white'>You must provide a person's {label_text}", buttons=QMessageBox.Ok, parent=self)
+                messagebox.setIconPixmap(QPixmap(stop_writing))
+                messagebox.exec_()
 
-                QMessageBox.critical(  
-                    self,  
-                    "Error!",  
-                    f"<FONT COLOR='white'>You must provide a person's {label_text}",  
-                )  
+
                 self.data = None  # Reset .data  
                 return  
 
