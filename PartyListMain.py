@@ -3,6 +3,8 @@ import Database
 import TableModel
 import openpyxl
 import os
+import re
+
 from reportlab.pdfgen import canvas
 
 from pathlib import Path
@@ -384,7 +386,8 @@ class AddPersonDialog(QDialog):
         stop_writing = os.path.join(dirname, 'stop_writing.png')
 
         self.data = []  
-        for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):  
+        for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):
+
             if not field.text():  
                 if field == self.edit_first_name:
                     label_text = self.label_first_name.text()
@@ -399,9 +402,21 @@ class AddPersonDialog(QDialog):
                 messagebox.setIconPixmap(QPixmap(stop_writing))
                 messagebox.exec_()
 
-
                 self.data = None  # Reset .data  
                 return  
+            
+            if field == self.edit_email:
+                email_regex = r'^[a-z0-9.+_-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+                if not re.match(email_regex, field.text()):
+                    # Display error message for invalid email format
+                    messagebox = QMessageBox(QMessageBox.Information, "Error", 
+                                            "<FONT COLOR='white'>Invalid email format", 
+                                            buttons=QMessageBox.Ok, parent=self)
+                    messagebox.setIconPixmap(QPixmap(stop_writing))
+                    messagebox.exec_()
+                    
+                    self.data = None  # Reset .data  
+                    return 
 
             self.data.append(field.text())  
             print(self.data)
