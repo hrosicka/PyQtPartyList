@@ -331,7 +331,7 @@ class PartyWindow(QMainWindow):
             my_canvas.save()
             messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to PDF successfully!</FONT>")
         except PermissionError as e:
-            messageBox = QMessageBox.critical(self, "Error", f"<FONT COLOR='white'>Error saving PDF: {e}</FONT>")
+            messageBox = QMessageBox.critical(self, "Error", f"<FONT COLOR='white'>Error saving PDF!</FONT>")
 
         
 
