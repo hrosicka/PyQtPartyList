@@ -327,9 +327,13 @@ class PartyWindow(QMainWindow):
                 x = data_margin + (column_width * col_index)
                 my_canvas.drawString(x, data_y, str(value))  # Left-aligned data
 
-        # Save the PDF
-        my_canvas.save()
-        messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to PDF successfully!</FONT>")
+        try:
+            my_canvas.save()
+            messageBox = QMessageBox.information(self, "Success", "<FONT COLOR='white'>Party list exported to PDF successfully!</FONT>")
+        except PermissionError as e:
+            messageBox = QMessageBox.critical(self, "Error", f"<FONT COLOR='white'>Error saving PDF: {e}</FONT>")
+
+        
 
 # second dialog for informatin display
 class AddPersonDialog(QDialog):
