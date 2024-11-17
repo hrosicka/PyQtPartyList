@@ -69,6 +69,19 @@ class TestAddPersonDialog(unittest.TestCase):
         error_messages = self.dialog.get_error_messages()
         self.assertEqual(len(error_messages), 4)  # assert 4 messages displayed
 
+    def test_invalid_email(self):
+        # Simulate invalid email
+        self.dialog.edit_first_name.setText("John")
+        self.dialog.edit_last_name.setText("Doe")
+        self.dialog.edit_phone.setText("123-456-7890")
+        self.dialog.edit_email.setText("invalid_email")
+
+        ## Call accept and check for error message with expected text
+        self.dialog.accept()
+
+        error_messages = self.dialog.get_error_messages()
+        self.assertIn("Invalid email format", error_messages)
+
 if __name__ == '__main__':
     unittest.main()
 
