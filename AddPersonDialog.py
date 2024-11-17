@@ -97,4 +97,18 @@ class AddPersonDialog(QDialog):
             self.data.append(field.text())  
             print(self.data)
 
-        super().accept()  
+        super().accept()
+
+    def get_error_messages(self):
+        """
+        Returns a list of all error messages encountered during unsuccessful form submission.
+
+        :return: A list of strings containing the error messages.
+        """
+        error_messages = []
+        for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):
+            if not field.text():
+                # Extract the field name from the objectName and capitalize the first letter
+                field_name = field.objectName().split('_')[1].capitalize()
+                error_messages.append(f"You must provide a person's {field_name}")
+        return error_messages
