@@ -62,41 +62,21 @@ class AddPersonDialog(QDialog):
         stop_writing = os.path.join(dirname, 'stop_writing.png')
 
         self.data = []  
+        
+        error_messages = self.get_error_messages()  # Call get_error_messages
+
+        if error_messages:
+            # Display the first error message in a message box
+            messagebox = QMessageBox(QMessageBox.Critical, "Error","<FONT COLOR='white'>"+error_messages[0], buttons=QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap('stop_writing.png'))
+            messagebox.exec_()
+            return  # Don't proceed further if there are errors
+
+        # No errors, proceed with collecting data
         for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):
+            self.data.append(field.text())
 
-            if not field.text():  
-                if field == self.edit_first_name:
-                    label_text = self.label_first_name.text()
-                elif field == self.edit_last_name:
-                    label_text = self.label_last_name.text()
-                elif field == self.edit_phone:
-                    label_text = self.label_phone.text()
-                elif field == self.edit_email:
-                    label_text = self.label_email.text()
-
-                messagebox = QMessageBox(QMessageBox.Information, "Error", f"<FONT COLOR='white'>You must provide a person's {label_text}", buttons=QMessageBox.Ok, parent=self)
-                messagebox.setIconPixmap(QPixmap(stop_writing))
-                messagebox.exec_()
-
-                self.data = None  # Reset .data  
-                return  
-            
-            if field == self.edit_email:
-                email_regex = r'^[a-z0-9.+_-]+@[a-z0-9.-]+\.[a-z]{2,}$'
-                if not re.match(email_regex, field.text()):
-                    # Display error message for invalid email format
-                    messagebox = QMessageBox(QMessageBox.Information, "Error", 
-                                            "<FONT COLOR='white'>Invalid email format", 
-                                            buttons=QMessageBox.Ok, parent=self)
-                    messagebox.setIconPixmap(QPixmap(stop_writing))
-                    messagebox.exec_()
-                    
-                    self.data = None  # Reset .data  
-                    return 
-
-            self.data.append(field.text())  
-            print(self.data)
-
+        print(self.data)
         super().accept()
 
     def get_error_messages(self):
@@ -108,11 +88,18 @@ class AddPersonDialog(QDialog):
         error_messages = []
         for field in (self.edit_first_name, self.edit_last_name, self.edit_phone, self.edit_email):
             if not field.text():
+                count_words = len(field.objectName().split('_'))
                 # Extract the field name from the objectName and capitalize the first letter
-                field_name = field.objectName().split('_')[1].capitalize()
+                if count_words == 3:
+                    field_name = field.objectName().split('_')[1].capitalize()+" "+field.objectName().split('_')[2].capitalize()
+                elif count_words == 2:
+                    field_name = field.objectName().split('_')[1].capitalize()
+                else:
+                    field_name = None
                 error_messages.append(f"You must provide a person's {field_name}")
+
             elif field == self.edit_email:
                 email_regex = r'^[a-z0-9.+_-]+@[a-z0-9.-]+\.[a-z]{2,}$'
                 if not re.match(email_regex, field.text()):
-                    error_messages.append("Invalid email format")
+                    error_messages.append("Your email address should include an '@' symbol and a domain name (e.g., .com, .net).")
         return error_messages
