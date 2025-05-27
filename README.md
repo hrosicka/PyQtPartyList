@@ -1,4 +1,13 @@
 # PartyList
+
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![License](https://img.shields.io/github/license/hrosicka/PyQtPartyList)
+![Issues](https://img.shields.io/github/issues/hrosicka/PyQtPartyList)
+![Last Commit](https://img.shields.io/github/last-commit/hrosicka/PyQtPartyList)
+![Party Hard](https://img.shields.io/badge/party-hard-ff69b4)
+![Powered by PyQt](https://img.shields.io/badge/powered%20by-PyQt-green)
+![100% Party](https://img.shields.io/badge/100%25-Party-red)
+
 Application for creating partylist of friends. Written in Python. SQLite database is used as storage. Still in progress...
 
 - **Imagine throwing an unforgettable party!** Keep track of your guests effortlessly with our user-friendly Party List application. This intuitive software seamlessly manages your guest information, ensuring a smooth and stress-free planning experience.
