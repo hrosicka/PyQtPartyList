@@ -65,8 +65,8 @@ Deleted all data from the table
 ![](https://github.com/hrosicka/PyQtPartyList/blob/master/doc/AddNewPersonDialogPhone.png)
 
 
+## Author
+Lovingly crafted by [Hanka Robovska](https://github.com/hrosicka) 👩‍🔬
 
-
-
-
-
+## License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details. Free to use, modify, and distribute as needed.
